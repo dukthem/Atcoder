@@ -38,23 +38,25 @@
 n , q = list(map(int, input().split()))
 s = input()
 for i in range(q):
-    a, c = list(map(str, input().split()))
-    x = int(a)
+    x, c = list(map(str, input().split()))
+    x = int(x)
     s = s[ : x-1] + c + s[x :]
     ans = 0
     l = 0
     cnt = 0
+    cnt1 = 0
     while ans == 0:
         for j in range(l,n-2):
-                if s[j] == "A":
-                    if s[j+1] == "B":
-                        if s[j+2] == "C":
-                            # print(j, end="")
-                            # print(s[j:j+3])
-                            cnt += 1
-                            l += 3
-                            break
-        if l >= n-1:
+                if s[j] == "A" and s[j+1] == "B" and s[j+2] == "C":
+                    cnt += 1
+                    l += 3
+                    cnt1 += 3 
+                    break
+                else:
+                    cnt1 += 1
+                    if j == n-3:
+                         cnt1 += 2
+        if cnt1 == n:
              ans = 1
              break
     print(cnt)
